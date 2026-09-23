@@ -10,12 +10,29 @@ import type { LinkItem, Profile } from "@/types";
  */
 export const profile: Profile = {
   name: "이수훈",
-  bio: "대한민국 역사 교사",
-  avatarUrl: "/profile.svg",
+  bio: "대한민국 역사 교사 | AI 개발 공부중",
+  avatarUrl: "/profile.jpg",
 };
 
 export const links: readonly LinkItem[] = [
-  { id: "github", label: "GitHub", url: "https://github.com/example" },
-  { id: "linkedin", label: "LinkedIn", url: "https://linkedin.com/in/example" },
-  { id: "blog", label: "Blog", url: "https://example.com/blog" },
+  {
+    id: "github",
+    label: "깃허브",
+    url: "https://github.com/akaz01",
+    icon: "github",
+  },
+  {
+    id: "instagram",
+    label: "인스타그램",
+    url: "https://www.instagram.com/suhoon_ing",
+    icon: "instagram",
+  },
+  {
+    id: "email",
+    label: "이메일",
+    // 메일 앱을 여는 대신 주소를 복사한다. 웹메일만 쓰는 사람에게는
+    // mailto:가 아무 반응 없는 버튼처럼 보이기 때문이다.
+    copyText: "k2tngnsdl@gmail.com",
+    icon: "gmail",
+  },
 ];

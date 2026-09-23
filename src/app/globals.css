@@ -4,48 +4,139 @@
 
 /*
  * 디자인 토큰 — 링크나무
- * 밝은 화면은 따뜻한 종이 톤, 어두운 화면은 깊은 숲 톤.
- * 포인트 색은 두 테마 모두 초록 계열로 유지해 브랜드 인상을 지킨다.
+ * 방향: 사이버 디지털 퓨처리즘.
+ *
+ * 검정 대신 보랏빛이 도는 암전을 바탕으로 쓴다. 순수한 검정 위의 네온은
+ * 간판처럼 보이지만, 보라 기운이 깔리면 핑크와 라임이 화면 발광처럼 읽힌다.
+ * 두 강조색은 서로 떨어뜨려 쓰고 프로필 링 한 곳에서만 맞닿게 해서
+ * "강렬한 대비"가 화면 전체로 번지지 않고 한 점에 모이도록 한다.
  */
 :root {
-  /*
-   * 한글이 있는 페이지라 라틴 전용 폰트로는 글자가 전부 대체 글꼴로 빠진다.
-   * 기기에 이미 있는 한글 폰트를 우선 쓰면 네트워크 요청 없이 즉시 렌더된다.
-   * 웹폰트를 쓰려면 next/font로 교체하면 된다.
-   */
-  --font-sans: "Pretendard", "Pretendard Variable", -apple-system,
-    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "맑은 고딕",
+  --font-display:
+    var(--font-plex-kr), -apple-system, "Apple SD Gothic Neo", "Malgun Gothic",
     system-ui, sans-serif;
 
-  --canvas: #f7f4ee;
+  /* 낮 모드. 강조색은 글자에 써도 읽히도록 채도를 낮춘 값을 따로 둔다. */
+  --canvas: #f2eefa;
   --surface: #ffffff;
-  --surface-hover: #fdfcf9;
-  --foreground: #1b1a17;
-  --muted: #6f6a60;
-  --accent: #2f6f4e;
-  --line: #e6e0d5;
+  --surface-hover: #fbf9ff;
+  --foreground: #150f22;
+  --muted: #5f5677;
+  --accent: #d1006b;
+  --volt: #4a7000;
+  --line: #e2daf0;
+
+  --grid: rgb(21 15 34 / 0.05);
+  --glow-a: rgb(255 45 148 / 0.2);
+  --glow-b: rgb(168 255 0 / 0.22);
+  --ring-glow: rgb(209 0 107 / 0.2);
+
+  --shadow-card:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.9),
+    0 6px 20px -10px rgb(21 15 34 / 0.18);
 }
 
 .dark {
-  --canvas: #121410;
-  --surface: #1b1e19;
-  --surface-hover: #222620;
-  --foreground: #ebe8e1;
-  --muted: #9a958a;
-  --accent: #7fc79b;
-  --line: #2c312a;
+  --canvas: #08060f;
+  --surface: #150e27;
+  --surface-hover: #1e1438;
+  --foreground: #f3eeff;
+  --muted: #a79bc6;
+  --accent: #ff2d94;
+  --volt: #c2ff35;
+  --line: #2d2149;
+
+  --grid: rgb(255 255 255 / 0.045);
+  --glow-a: rgb(255 45 148 / 0.24);
+  --glow-b: rgb(194 255 53 / 0.18);
+  --ring-glow: rgb(255 45 148 / 0.32);
+
+  --shadow-card:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.06),
+    0 8px 24px -12px rgb(0 0 0 / 0.8);
+}
+
+/*
+ * 배경색은 html이 맡는다. body가 배경색을 가지면 아래 두 의사 요소가
+ * 그 뒤로 숨어 보이지 않는다.
+ */
+html {
+  background-color: var(--canvas);
 }
 
 body {
-  background-color: var(--canvas);
   color: var(--foreground);
 }
 
-/* 테마 전환이 딱딱하게 튀지 않도록 색상만 부드럽게 보간한다. */
+/* 배경 1층 — 좌표 격자. 아래로 갈수록 사라져 링크 카드와 경쟁하지 않는다. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 80%);
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 80%);
+}
+
+/* 배경 2층 — 핑크와 라임을 대각선 양 끝으로 갈라 놓은 광원. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(46rem 32rem at 10% -10%, var(--glow-a), transparent 62%),
+    radial-gradient(40rem 30rem at 96% 96%, var(--glow-b), transparent 62%);
+}
+
+/*
+ * 첫 진입에서 위에서 아래로 한 번만 차례로 올라온다.
+ * 계속 움직이는 요소는 두지 않는다.
+ */
 @media (prefers-reduced-motion: no-preference) {
-  body {
-    transition:
-      background-color 200ms ease,
-      color 200ms ease;
+  .rise {
+    animation: rise 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /*
+   * 복사 알림. 뜨고, 잠깐 머물고, 스스로 사라진다.
+   * 사라지는 구간까지 한 애니메이션에 넣어야 엘리먼트를 지울 때
+   * 뚝 끊기지 않는다. 길이는 LinkCard의 TOAST_MS와 맞춘다.
+   */
+  .toast {
+    animation: toast-pop 1800ms ease forwards;
+  }
+
+  @keyframes toast-pop {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    12%,
+    78% {
+      opacity: 1;
+      transform: none;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
   }
 }

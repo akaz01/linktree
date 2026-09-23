@@ -14,16 +14,18 @@ const config: Config = {
         "surface-hover": "var(--surface-hover)",
         foreground: "var(--foreground)",
         muted: "var(--muted)",
+        // accent = 핫 핑크(상호작용), volt = 사이버 라임(정체성).
+        // Tailwind 기본 lime 팔레트를 덮어쓰지 않도록 이름을 따로 둔다.
         accent: "var(--accent)",
+        volt: "var(--volt)",
         line: "var(--line)",
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        sans: ["var(--font-display)"],
       },
       boxShadow: {
-        card: "0 1px 2px rgb(0 0 0 / 0.04), 0 4px 12px -4px rgb(0 0 0 / 0.08)",
-        "card-hover":
-          "0 2px 4px rgb(0 0 0 / 0.05), 0 12px 24px -8px rgb(0 0 0 / 0.14)",
+        // 테마마다 값이 달라야 해서 변수로 받는다.
+        card: "var(--shadow-card)",
       },
     },
   },

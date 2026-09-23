@@ -68,7 +68,7 @@ export function ThemeToggle() {
       type="button"
       onClick={handleClick}
       aria-label={label}
-      className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface text-muted transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+      className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface text-muted shadow-card transition-colors duration-200 hover:border-accent/50 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas motion-reduce:transition-none"
     >
       {isMounted ? isDark ? <SunIcon /> : <MoonIcon /> : null}
     </button>

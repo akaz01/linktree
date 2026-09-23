@@ -13,9 +13,11 @@ type Props = {
  */
 export function ThemeProvider({ children }: Props) {
   return (
+    // 사이버 방향은 어두운 화면이 기본 인상이다. 시스템 설정은 그대로 따르되,
+    // 설정을 알 수 없을 때는 밝은 화면이 아니라 어두운 화면으로 시작한다.
     <NextThemesProvider
       attribute="class"
-      defaultTheme="system"
+      defaultTheme="dark"
       enableSystem
       disableTransitionOnChange
     >
