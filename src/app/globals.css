@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * 디자인 토큰 — 링크나무
+ * 밝은 화면은 따뜻한 종이 톤, 어두운 화면은 깊은 숲 톤.
+ * 포인트 색은 두 테마 모두 초록 계열로 유지해 브랜드 인상을 지킨다.
+ */
+:root {
+  /*
+   * 한글이 있는 페이지라 라틴 전용 폰트로는 글자가 전부 대체 글꼴로 빠진다.
+   * 기기에 이미 있는 한글 폰트를 우선 쓰면 네트워크 요청 없이 즉시 렌더된다.
+   * 웹폰트를 쓰려면 next/font로 교체하면 된다.
+   */
+  --font-sans: "Pretendard", "Pretendard Variable", -apple-system,
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "맑은 고딕",
+    system-ui, sans-serif;
+
+  --canvas: #f7f4ee;
+  --surface: #ffffff;
+  --surface-hover: #fdfcf9;
+  --foreground: #1b1a17;
+  --muted: #6f6a60;
+  --accent: #2f6f4e;
+  --line: #e6e0d5;
+}
+
+.dark {
+  --canvas: #121410;
+  --surface: #1b1e19;
+  --surface-hover: #222620;
+  --foreground: #ebe8e1;
+  --muted: #9a958a;
+  --accent: #7fc79b;
+  --line: #2c312a;
+}
+
+body {
+  background-color: var(--canvas);
+  color: var(--foreground);
+}
+
+/* 테마 전환이 딱딱하게 튀지 않도록 색상만 부드럽게 보간한다. */
+@media (prefers-reduced-motion: no-preference) {
+  body {
+    transition:
+      background-color 200ms ease,
+      color 200ms ease;
+  }
+}
