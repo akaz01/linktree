@@ -12,6 +12,44 @@ export const profile: Profile = {
   name: "이수훈",
   bio: "대한민국 역사 교사 | AI 개발 공부중",
   avatarUrl: "/profile.jpg",
+  awards: [
+    {
+      year: 2026,
+      items: [
+        {
+          emoji: "📜",
+          title: "제24회 전국중고등학생 우리역사바로알기 대회 장려상 (학생 지도)",
+        },
+        {
+          emoji: "📜",
+          title:
+            "제17회 삼국유사 퀴즈대회(전국 고교생 역사퀴즈 대항전) 장려상 (학생 지도)",
+        },
+      ],
+    },
+    {
+      year: 2025,
+      items: [
+        { emoji: "🥇", title: "학생생활지도 및 학교폭력예방 유공 표창 (교육감)" },
+        { emoji: "🎬", title: "안보지킴이 공모전 영상 분야 우수상 (경찰청장)" },
+        { emoji: "🎬", title: "학교폭력예방 친구사랑3운동 영상 공모전 금상" },
+      ],
+    },
+    {
+      year: 2024,
+      items: [
+        { emoji: "🌱", title: "대전동부교육지원청 인성교육 활성화 유공 표창 (교육장)" },
+        { emoji: "🎵", title: "대전광역시 초중학생음악경연대회 지도교사상 (교육감)" },
+      ],
+    },
+    {
+      year: 2023,
+      items: [
+        { emoji: "🎨", title: "학교예술교육활성화 유공 표창 (교육감)" },
+        { emoji: "🎵", title: "대전광역시 초중학생음악경연대회 지도교사상 (교육감)" },
+      ],
+    },
+  ],
 };
 
 export const links: readonly LinkItem[] = [
@@ -24,7 +62,7 @@ export const links: readonly LinkItem[] = [
   {
     id: "instagram",
     label: "인스타그램",
-    url: "https://www.instagram.com/suhoon_ing",
+    url: "https://www.instagram.com/shoon_zip/",
     icon: "instagram",
   },
   {
