@@ -127,10 +127,16 @@ export function LinkCard({ link, alignLabels }: Props) {
     </span>
   );
 
-  if (link.copyText !== undefined) {
-    const { copyText } = link;
+  if (link.copyText !== undefined || link.noticeText !== undefined) {
+    const { copyText, noticeText } = link;
 
-    const handleCopy = async () => {
+    const handleClick = async () => {
+      if (noticeText !== undefined) {
+        showNotice(noticeText);
+        return;
+      }
+      if (copyText === undefined) return;
+
       try {
         await navigator.clipboard.writeText(copyText);
         showNotice("이메일 주소를 복사했습니다");
@@ -143,9 +149,9 @@ export function LinkCard({ link, alignLabels }: Props) {
 
     return (
       <>
-        <button type="button" onClick={handleCopy} className={CARD_CLASS}>
+        <button type="button" onClick={handleClick} className={CARD_CLASS}>
           {body}
-          <CopyGlyph />
+          {copyText !== undefined ? <CopyGlyph /> : null}
         </button>
 
         {/*

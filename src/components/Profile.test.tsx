@@ -71,7 +71,7 @@ describe("Profile", () => {
     const awards = screen.getByRole("group");
     expect(awards).not.toHaveAttribute("open");
 
-    await user.click(screen.getByText("수상 이력"));
+    await user.click(screen.getByText("수상 및 표창"));
 
     expect(awards).toHaveAttribute("open");
   });
@@ -79,6 +79,6 @@ describe("Profile", () => {
   test("수상 이력이 없으면 해당 영역을 그리지 않는다", () => {
     render(<Profile profile={profile} />);
 
-    expect(screen.queryByText("수상 이력")).not.toBeInTheDocument();
+    expect(screen.queryByText("수상 및 표창")).not.toBeInTheDocument();
   });
 });

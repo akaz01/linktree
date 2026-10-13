@@ -60,7 +60,7 @@ export function Profile({ profile }: Props) {
         // 네이티브 <details>라 클라이언트 JS 없이 열고 닫힌다.
         <details className="group mt-5 w-full">
           <summary className="mx-auto flex w-fit cursor-pointer list-none items-center gap-1.5 rounded-full border border-line px-3.5 py-1.5 text-xs tracking-tight text-muted transition-colors hover:bg-surface-hover hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent [&::-webkit-details-marker]:hidden">
-            수상 이력
+            수상 및 표창
             <svg
               aria-hidden="true"
               viewBox="0 0 16 16"

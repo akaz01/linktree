@@ -39,14 +39,14 @@ export const profile: Profile = {
       year: 2024,
       items: [
         { emoji: "🌱", title: "대전동부교육지원청 인성교육 활성화 유공 표창 (교육장)" },
-        { emoji: "🎵", title: "대전광역시 초중학생음악경연대회 지도교사상 (교육감)" },
+        { emoji: "🎵", title: "대전광역시 초중학생음악경연대회 지도교사상 금상(교육감)" },
       ],
     },
     {
       year: 2023,
       items: [
         { emoji: "🎨", title: "학교예술교육활성화 유공 표창 (교육감)" },
-        { emoji: "🎵", title: "대전광역시 초중학생음악경연대회 지도교사상 (교육감)" },
+        { emoji: "🎵", title: "대전광역시 초중학생음악경연대회 지도교사상 금상(교육감)" },
       ],
     },
   ],
@@ -56,13 +56,13 @@ export const links: readonly LinkItem[] = [
   {
     id: "github",
     label: "깃허브",
-    url: "https://github.com/akaz01",
+    noticeText: "추후 공개",
     icon: "github",
   },
   {
     id: "instagram",
     label: "인스타그램",
-    url: "https://www.instagram.com/shoon_zip/",
+    url: "https://www.instagram.com/shl_code/",
     icon: "instagram",
   },
   {

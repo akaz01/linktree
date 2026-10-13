@@ -34,10 +34,10 @@ type LinkItemBase = {
 /**
  * 링크 카드 한 장에 필요한 정보.
  *
- * 카드는 "주소로 이동"하거나 "값을 복사"하거나 둘 중 하나만 한다.
- * url과 copyText를 동시에 가진 카드는 타입 단계에서 막아, 어느 쪽으로
- * 동작할지 런타임에 따져볼 필요가 없게 한다.
+ * 카드는 주소 이동, 값 복사, 안내 표시 중 하나만 한다.
+ * 동작을 동시에 지정하지 못하도록 타입 단계에서 막는다.
  */
 export type LinkItem =
-  | (LinkItemBase & { url: string; copyText?: never })
-  | (LinkItemBase & { copyText: string; url?: never });
+  | (LinkItemBase & { url: string; copyText?: never; noticeText?: never })
+  | (LinkItemBase & { copyText: string; url?: never; noticeText?: never })
+  | (LinkItemBase & { noticeText: string; url?: never; copyText?: never });
